@@ -53,14 +53,20 @@ int main(int argc, char** argv)
 			"Power calculation\n2 - Prime test\n3 - Palindrome test\nPlease enter operation number (1/2/3):\n");
 
 	/*	Get operation number from user */
-	scanf("%d", &operationID);
+	if (1 !=  scanf("%d", &operationID))
+	{
+		return EXIT_FAILURE;
+	}
 
 	switch(operationID)
 	{
 	case POWER:
 		{
 			printf("Please enter three space separated numbers:\n");
-			scanf("%d %d %d", &num, &power, &mod);
+			if (3 !=  scanf("%d %d %d", &num, &power, &mod))
+			{
+				return EXIT_FAILURE;
+			}
 
 			res = funPow(num, power, mod);
 			printf("%s%d\n", RESULT_PREFIX_STRING, res);
@@ -69,7 +75,10 @@ int main(int argc, char** argv)
 	case PRIME:
 		{
 			printf("Please enter an integer:\n");
-			scanf("%d", &num);
+			if( 1 != scanf("%d", &num))
+			{
+				return EXIT_FAILURE;
+			}
 
 			res = funPrimeCheck(num);
 			printf("%s%s\n", RESULT_PREFIX_STRING,  res ? RESULT_TRUE_STRING : RESULT_FALSE_STRING);
@@ -78,7 +87,10 @@ int main(int argc, char** argv)
 	case POLI:
 		{
 			printf("Please enter an integer:\n");
-			scanf("%d", &num);
+			if( 1 !=  scanf("%d", &num))
+			{
+				return EXIT_FAILURE;
+			}
 
 			res = funPalindromeCheck(num);
 			printf("%s%s\n", RESULT_PREFIX_STRING, res ? RESULT_TRUE_STRING : RESULT_FALSE_STRING);
