@@ -142,6 +142,9 @@ bool funPalindromeCheck(int x)
 	unsigned int xHelper = x;
 	unsigned int numberSize = 0;
 
+	unsigned int rightDigit = 0;
+	unsigned int leftDigit = 0;
+
 	/* negative numbers are not palindromes*/
 	if (x < 0)
 	{
@@ -163,8 +166,8 @@ bool funPalindromeCheck(int x)
 	 * 			each time cuts the left and right digits (10 base) and compare them*/
 	for (int i = 0, j=numberSize-1; i<j; i++,j--)
 	{
-		unsigned int rightDigit = (x % base);
-		unsigned int leftDigit = x / leftDigitDiv;
+		rightDigit = (x % base);
+		leftDigit = x / leftDigitDiv;
 		if (leftDigit != rightDigit)
 		{
 			return false;
