@@ -29,13 +29,14 @@ enum FunctionID{POWER=1, PRIME=2, POLI=3};
 
 int main(int argc, char** argv)
 {
-	int functionID;
+	char* resStr = "res = ";
+	int functionID, res,num;
 
 	/* disable stdout buffer - caused problem with scanf after printf*/
 	setbuf(stdout, NULL);
 
 	printf("Welcome to Math Is Fun - beta version\nSupported operations are:\n1 - "
-			"Power calculation\n2 - Prime test\n3 - Palindrome test\nPlease enter operation number (1/2/3):");
+			"Power calculation\n2 - Prime test\n3 - Palindrome test\nPlease enter operation number (1/2/3):\n");
 
 	scanf("%d", &functionID);
 
@@ -43,30 +44,40 @@ int main(int argc, char** argv)
 	{
 	case POWER:
 		{
-			int num,power,mod;
+			int power,mod;
+
+			printf("Please enter three space separated numbers:\n");
 			scanf("%d %d %d", &num, &power, &mod);
 
+			res = funPow(num, power,mod);
+			printf("%s%d\n", resStr, res);
 			break;
 		}
 	case PRIME:
 		{
-			int num;
+			printf("Please enter an integer:\n");
 			scanf("%d", &num);
 
+			res = funPrimeCheck(num);
+			printf("%s%s\n", resStr,  res ? "true" : "false");
 			break;
 		}
 	case POLI:
 		{
-			int num;
+			printf("Please enter an integer:\n");
 			scanf("%d", &num);
 
+			res = funPalindromeCheck(num);
+			printf("%s%s\n", resStr, res ? "true" : "false");
 			break;
 		}
 	default:
 		{
-		//TODO
+			/* do nothing?? */
 		}
 	}
+
+
 
 	return EXIT_SUCCESS;
 }
