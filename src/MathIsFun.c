@@ -110,8 +110,28 @@ int funSqrt(int x) {
 }
 
 bool funPrimeCheck(int x) {
-	//Your implementation
-	//Declaration + Variabl initializing at the beginning of the function
+
+	unsigned int sqrtx = 0;
+	unsigned int i = 0;
+
+	/*	Get the sqrt of x and check error */
+	sqrtx = funSqrt(x);
+	if (sqrtx == RES_ERROR)
+	{
+		return false;
+	}
+
+	/*	Check if i is a divider of x */
+	for (i=2;i<=sqrtx;i++)
+	{
+		if (x % i == 0)
+		{
+			return false;
+		}
+	}
+
+	/*	We didn't find any divider, so it is a prome */
+	return true;
 }
 
 bool funPalindromeCheck(int x)
