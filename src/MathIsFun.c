@@ -4,60 +4,109 @@
 
 
 int funPow(int x, int n, int d) {
+	bool odd_power = false;
+	int res = 0;
+
 	/* Check the case where the power is 0 */
 	if (n == 0)
 	{
 		return 1;
 	}
-	/* The power should not be negative but we check it anyway
-	 *  TODO: Maybe not? */
+	/* Check the case where the power is 1 */
+	else if (n == 1)
+	{
+		res = x % d;
+		if (x < 0) res += d;	/* we use different negative mod */
+		return res;
+	}
+	/* Check Error when n is negative */
 	else if (n < 0)
 	{
 		return RES_ERROR;
 	}
 
-	/* Multiple the base (with modulo) n times */
-	while (n > 1)
+	/* If the power is odd, remember that but recurse with even power */
+	if (n % 2 == 1)
 	{
-		x = (x * x) % d;
+		odd_power = true;
 		n--;
 	}
 
-	return x;
+	/*	Recursive power */
+	res = funPow(x, n/2, d);
+	if (res == RES_ERROR)
+	{
+		return RES_ERROR;
+	}
+
+	/* x^(n/2) * x^(n/2) mod d */
+	res = (res * res) % d;
+
+	/* Consider the odd power */
+	if (odd_power == true)
+	{
+		res = (res * x) % d;
+		if (x < 0) res += d;	/* we use different negative mod */
+	}
+
+	return res;
 }
 
 int funSqrt(int x) {
 
-	unsigned int count = 1;
-	unsigned int square = 0;
+	unsigned int low = 1;
+	unsigned int high = x;
+
+	unsigned int mid = 0;
+
+	unsigned int mid_square = 0;
+	unsigned int midP_square = 0;
 
 	/* Negative numbers are not allowed */
 	if (x < 0)
 	{
 		return RES_ERROR;
-	} else if (x == 0)
+	}
+	/* Square of 0 is 0 */
+	else if (x == 0)
 	{
 		return 0;
 	}
 
-	/* For every number, square it. Stop when the square is bigger than x
-	 * We start with 0 because we want to check it also. */
-	do
+	/* Binary search, find where: (mid)^2 <= x < (mid+1)^2 */
+	while (low <= high)
 	{
-		square = count * count;
+		mid = (low + high) / 2;
 
+		/* calc squares */
+		mid_square = mid * mid;
+		midP_square = mid + 1;
+		midP_square = midP_square * midP_square;
 
-		/* Overflow check */
-		if ((count > 0) && (square / count != count))
+		/* Check if we got the sqrt */
+		if ((mid_square <= x) && (x < midP_square))
 		{
-			break;
+			return mid;
 		}
-		count++;
-	} while (square < x);
+		/* If we did'nt find but finished the range, we failed */
+		else if (low == high)
+		{
+			return RES_ERROR;
+		}
+		/* Change low and high according to rules of binary search */
+		else if (mid_square > x)
+		{
+			high = mid;
 
-	/* Return the last count number. It was the last smaller square
-	 * count var here will be at least 1 so we can't return negative number */
-	return count - 1;
+		}
+		else
+		{
+			low = mid + 1;
+		}
+	}
+
+	/* If until now we didn't returned an answer, we failed */
+	return RES_ERROR;
 }
 
 bool funPrimeCheck(int x) {
