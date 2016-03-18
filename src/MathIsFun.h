@@ -3,6 +3,16 @@
 #include <stdbool.h>
 
 /*
+ * Calculates the largest integer less or equal than the square root of x.
+ * funSqrt(10) = 3
+ * funSqrt(16) = 4
+ * @param x - An integer for which the function applies
+ * @return the value of |_sqrt(x)_|, if x is negative then the function
+ * returns -1.
+ */
+int funSqrt(int x); // ==> Declaration is always in the beginning of the file.
+
+/*
  * Calculates the remainder of pow(x,n) divided by d,
  * where pow(x,n) is the power of x n times.
  * For example:
