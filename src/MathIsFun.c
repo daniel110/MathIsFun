@@ -116,18 +116,19 @@ bool funPrimeCheck(int x) {
 
 bool funPalindromeCheck(int x)
 {
-	const int base = 10;
-	int leftDigitDiv = 1;
+	const unsigned int base = 10;
+	unsigned int leftDigitDiv = 1;
 
-	int xHelper = x;
-	int numberSize = 0;
+	unsigned int xHelper = x;
+	unsigned int numberSize = 0;
 
+	/* negative numbers are not palindromes*/
 	if (x < 0)
 	{
 		return false;
 	}
 
-	// check x size, and update leftDigitDiv
+	/* check x size, and update leftDigitDiv - O(log_10(x)) */
 	while(xHelper > 0)
 	{
 		xHelper /= base;
@@ -137,22 +138,25 @@ bool funPalindromeCheck(int x)
 	}
 	leftDigitDiv /= 10;
 
+
+	/* iterator over the number -
+	 * 			each time cuts the left and right digits (10 base) and compare them*/
 	for (int i = 0, j=numberSize-1; i<j; i++,j--)
 	{
-		int rightDigit = (x % base);
-		int leftDigit = x / leftDigitDiv;
+		unsigned int rightDigit = (x % base);
+		unsigned int leftDigit = x / leftDigitDiv;
 		if (leftDigit != rightDigit)
 		{
 			return false;
 		}
 
 		leftDigitDiv = leftDigitDiv / 10;
+		/* remove the most left and right digits (10 base)*/
 		x = (x / base) % leftDigitDiv;
 
 		leftDigitDiv = leftDigitDiv / 10;
 	}
 
 	return true;
-
 }
 
