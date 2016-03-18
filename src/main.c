@@ -7,6 +7,7 @@
  */
 
 #include <stdio.h>
+#include <stdlib.h>
 #include "MathIsFun.h"
 
 int main(int argc, char** argv)
@@ -14,6 +15,6 @@ int main(int argc, char** argv)
 
 
 
-	return 0;
+	return EXIT_SUCCESS;
 }
 
