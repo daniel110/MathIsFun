@@ -20,37 +20,50 @@ void checkPoli()
 		/*0-5 false, 6-11 true */
 		printf("%d - %s\n", i, funPalindromeCheck(a[i]) ? "true" : "false");
 	}
-
 }
 
+/*	Defines */
+#define RESULT_PREFIX_STRING ("res = ")
+#define RESULT_FALSE_STRING ("false")
+#define RESULT_TRUE_STRING ("true")
 
-enum FunctionID{POWER=1, PRIME=2, POLI=3};
+/*	Input option numbers enum */
+enum FunctionID
+{
+	POWER=1,
+	PRIME=2,
+	POLI=3
+};
 
 
 int main(int argc, char** argv)
 {
-	char* resStr = "res = ";
-	int functionID, res,num;
+	int operationID = 0;
+	int res = 0;
+	int num = 0;
+
+	int power = 0;
+	int mod = 0;
 
 	/* disable stdout buffer - caused problem with scanf after printf*/
 	setbuf(stdout, NULL);
 
+	/*	Print welcome and instructions */
 	printf("Welcome to Math Is Fun - beta version\nSupported operations are:\n1 - "
 			"Power calculation\n2 - Prime test\n3 - Palindrome test\nPlease enter operation number (1/2/3):\n");
 
-	scanf("%d", &functionID);
+	/*	Get operation number from user */
+	scanf("%d", &operationID);
 
-	switch(functionID)
+	switch(operationID)
 	{
 	case POWER:
 		{
-			int power,mod;
-
 			printf("Please enter three space separated numbers:\n");
 			scanf("%d %d %d", &num, &power, &mod);
 
-			res = funPow(num, power,mod);
-			printf("%s%d\n", resStr, res);
+			res = funPow(num, power, mod);
+			printf("%s%d\n", RESULT_PREFIX_STRING, res);
 			break;
 		}
 	case PRIME:
@@ -59,7 +72,7 @@ int main(int argc, char** argv)
 			scanf("%d", &num);
 
 			res = funPrimeCheck(num);
-			printf("%s%s\n", resStr,  res ? "true" : "false");
+			printf("%s%s\n", RESULT_PREFIX_STRING,  res ? RESULT_TRUE_STRING : RESULT_FALSE_STRING);
 			break;
 		}
 	case POLI:
@@ -68,7 +81,7 @@ int main(int argc, char** argv)
 			scanf("%d", &num);
 
 			res = funPalindromeCheck(num);
-			printf("%s%s\n", resStr, res ? "true" : "false");
+			printf("%s%s\n", RESULT_PREFIX_STRING, res ? RESULT_TRUE_STRING : RESULT_FALSE_STRING);
 			break;
 		}
 	default:
