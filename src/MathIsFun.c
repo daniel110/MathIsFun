@@ -25,7 +25,45 @@ bool funPrimeCheck(int x) {
 	//Declaration + Variabl initializing at the beginning of the function
 }
 
-bool funPalindromeCheck(int x) {
-	//Your implementation
-	//Declaration + Variabl initializing at the beginning of the function
+bool funPalindromeCheck(int x)
+{
+	const int base = 10;
+	int leftDigitDiv = 1;
+
+	int xHelper = x;
+	int numberSize = 0;
+
+	if (x < 0)
+	{
+		return false;
+	}
+
+	// check x size, and update leftDigitDiv
+	while(xHelper > 0)
+	{
+		xHelper /= base;
+		leftDigitDiv *= 10;
+
+		numberSize++;
+	}
+	leftDigitDiv /= 10;
+
+	for (int i = 0, j=numberSize-1; i<j; i++,j--)
+	{
+		int rightDigit = (x % base);
+		int leftDigit = x / leftDigitDiv;
+		if (leftDigit != rightDigit)
+		{
+			return false;
+		}
+
+		leftDigitDiv = leftDigitDiv / 10;
+		x = (x / base) % leftDigitDiv;
+
+		leftDigitDiv = leftDigitDiv / 10;
+	}
+
+	return true;
+
 }
+
