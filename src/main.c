@@ -50,7 +50,7 @@ int main(int argc, char** argv)
 
 	/*	Print welcome and instructions */
 	printf("Welcome to Math Is Fun - beta version\nSupported operations are:\n1 - "
-			"Power calculation\n2 - Prime test\n3 - Palindrome test\nPlease enter operation number (1/2/3):\n");
+			"Power calculation\n2 - Prime test\n3 - Palindrome test\nPlease enter operation number (1/2/3): \n");
 
 	/*	Get operation number from user */
 	if (1 !=  scanf("%d", &operationID))
@@ -62,7 +62,7 @@ int main(int argc, char** argv)
 	{
 	case POWER:
 		{
-			printf("Please enter three space separated numbers:\n");
+			printf("Please enter three space separated numbers: \n");
 			if (3 !=  scanf("%d %d %d", &num, &power, &mod))
 			{
 				return EXIT_FAILURE;
@@ -74,7 +74,7 @@ int main(int argc, char** argv)
 		}
 	case PRIME:
 		{
-			printf("Please enter an integer:\n");
+			printf("Please enter an integer: \n");
 			if( 1 != scanf("%d", &num))
 			{
 				return EXIT_FAILURE;
@@ -86,7 +86,7 @@ int main(int argc, char** argv)
 		}
 	case POLI:
 		{
-			printf("Please enter an integer:\n");
+			printf("Please enter an integer: \n");
 			if( 1 !=  scanf("%d", &num))
 			{
 				return EXIT_FAILURE;

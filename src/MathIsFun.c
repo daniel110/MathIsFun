@@ -137,6 +137,7 @@ bool funPrimeCheck(int x) {
 bool funPalindromeCheck(int x)
 {
 	const unsigned int base = 10;
+	/* helper param for calculating the left digit */
 	unsigned int leftDigitDiv = 1;
 
 	unsigned int xHelper = x;
@@ -162,12 +163,16 @@ bool funPalindromeCheck(int x)
 	leftDigitDiv /= 10;
 
 
-	/* iterator over the number -
-	 * 			each time cuts the left and right digits (10 base) and compare them*/
-	for (int i = 0, j=numberSize-1; i<j; i++,j--)
+	/* iterator over the number digits (10 base) -
+	 * 			each time cuts the left and right digit, then compare them,
+	 * 			Therefore we iterate only until numberSize/2:
+	 * 				@note: there is no problem if the number is odd,
+	 * 						since the middle digit is at the same position from both sides*/
+	for (int i = 0; i <(numberSize/2); i++)
 	{
 		rightDigit = (x % base);
 		leftDigit = x / leftDigitDiv;
+		// compare the digits
 		if (leftDigit != rightDigit)
 		{
 			return false;
