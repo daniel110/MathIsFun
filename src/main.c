@@ -11,18 +11,21 @@
 
 #include "MathIsFun.h"
 
-
+/*
 void checkPoli()
 {
 	int a[12] = {-1,-100,10,1000,12343321,123311,  5444445,1005001, 0, 5, 123321,11};
 	for (int i=0;i<12; i++)
 	{
-		/*0-5 false, 6-11 true */
 		printf("%d - %s\n", i, funPalindromeCheck(a[i]) ? "true" : "false");
 	}
-}
+} */
+
 
 /*	Defines */
+#define WELCOME_MESSAGE ("Welcome to Math Is Fun - beta version\nSupported operations are:\n1 - " \
+							"Power Calculation\n2 - Prime Check\n3 - Palindrome Check\nPlease enter " \
+							"operation number (1/2/3): \n")
 #define RESULT_PREFIX_STRING ("res = ")
 #define RESULT_FALSE_STRING ("false")
 #define RESULT_TRUE_STRING ("true")
@@ -36,7 +39,7 @@ enum FunctionID
 };
 
 
-int main(int argc, char** argv)
+int main()
 {
 	int operationID = 0;
 	int res = 0;
@@ -49,8 +52,7 @@ int main(int argc, char** argv)
 	setbuf(stdout, NULL);
 
 	/*	Print welcome and instructions */
-	printf("Welcome to Math Is Fun - beta version\nSupported operations are:\n1 - "
-			"Power calculation\n2 - Prime test\n3 - Palindrome test\nPlease enter operation number (1/2/3): \n");
+	printf(WELCOME_MESSAGE);
 
 	/*	Get operation number from user */
 	if (1 !=  scanf("%d", &operationID))

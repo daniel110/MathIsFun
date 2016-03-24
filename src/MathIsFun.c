@@ -59,8 +59,8 @@ int funSqrt(int x) {
 
 	unsigned int mid = 0;
 
-	unsigned int mid_square = 0;
-	unsigned int midP_square = 0;
+	int mid_square = 0;
+	int midP_square = 0;
 
 	/* Negative numbers are not allowed */
 	if (x < 0)
@@ -116,7 +116,7 @@ bool funPrimeCheck(int x) {
 
 	/*	Get the sqrt of x and check error */
 	sqrtx = funSqrt(x);
-	if (sqrtx == RES_ERROR)
+	if (sqrtx == (unsigned int) RES_ERROR)
 	{
 		return false;
 	}
@@ -168,7 +168,7 @@ bool funPalindromeCheck(int x)
 	 * 			Therefore we iterate only until numberSize/2:
 	 * 				@note: there is no problem if the number is odd,
 	 * 						since the middle digit is at the same position from both sides*/
-	for (int i = 0; i <(numberSize/2); i++)
+	for (unsigned int i = 0; i <(numberSize/2); i++)
 	{
 		rightDigit = (x % base);
 		leftDigit = x / leftDigitDiv;
