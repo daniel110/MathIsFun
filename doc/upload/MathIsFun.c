@@ -172,7 +172,7 @@ bool funPalindromeCheck(int x)
 	{
 		rightDigit = (x % base);
 		leftDigit = x / leftDigitDiv;
-		// compare the digits
+		/* compare the digits */
 		if (leftDigit != rightDigit)
 		{
 			return false;
