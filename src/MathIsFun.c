@@ -114,6 +114,12 @@ bool funPrimeCheck(int x) {
 	unsigned int sqrtx = 0;
 	unsigned int i = 0;
 
+	/*	Negative and 1 are not primes */
+	if (x <= 1)
+	{
+		return false;
+	}
+
 	/*	Get the sqrt of x and check error */
 	sqrtx = funSqrt(x);
 	if (sqrtx == (unsigned int) RES_ERROR)
